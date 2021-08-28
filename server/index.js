@@ -1,10 +1,21 @@
 const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 
+const initializeRoutes = require("./routes");
+
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+app.use(cors());
+
+app.use(helmet());
+app.use(express.json());
+
+initializeRoutes(app);
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
