@@ -1,0 +1,20 @@
+{
+  "name": "personality-test-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Levente Danel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb-memory-server": "^7.3.6",
+    "mongoose": "^6.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0"
+  }
+}
