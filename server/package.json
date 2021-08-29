@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "test": "jest"
+    "start": "node src/index.js",
+    "test": "jest -c jest.config.js",
+    "test:unit": "jest -c jest.config.unit.js",
+    "test:int": "jest -c jest.config.integration.js"
   },
   "author": "Levente Danel",
   "license": "ISC",
