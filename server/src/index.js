@@ -1,66 +1,46 @@
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
-
 const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
+const { createServer } = require("./server");
 
-const initializeRoutes = require("./routes");
+const { dbConnect, dbDisconnect } = require("./database");
+
+const app = createServer();
 
 const PORT = process.env.PORT || 3001;
-const app = express();
-
-app.use(cors());
-
-app.use(helmet());
-app.use(express.json());
-
-initializeRoutes(app);
-
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
-});
 
 (async function bootstrap() {
-  try {
-    const mongod = await MongoMemoryServer.create();
-    const uri = mongod.getUri();
-
-    const mongooseOpts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    };
-
-    mongoose.connection.on("connected", function () {
-      console.log("Mongoose default connection open to " + uri);
-    });
-
-    mongoose.connection.on("error", function (err) {
-      console.log("Mongoose default connection error: " + err);
-    });
-
-    mongoose.connection.on("disconnected", function () {
-      console.log("Mongoose default connection disconnected");
-    });
-
-    await mongoose.connect(uri, mongooseOpts);
-  } catch (error) {
-    console.log("Cannot connect to MongoMemoryServer");
-    process.exit(1);
-  }
-  app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
-})();
-
-process.on("SIGINT", function () {
-  mongoose.connection.close(function () {
-    console.log("Mongoose disconnected through app termination");
-    process.exit(0);
+  mongoose.connection.on("connected", function () {
+    console.log("Mongoose connected");
   });
+
+  mongoose.connection.on("error", (err) => {
+    console.log("Mongoose connection error: " + err);
+    process.emit("SIGTERM");
+  });
+
+  mongoose.connection.on("disconnected", function () {
+    console.log("Mongoose disconnected");
+    process.emit("SIGTERM");
+  });
+
+  try {
+    await dbConnect();
+  } catch (error) {
+    console.log("Cannot connect to Mongoose");
+    process.emit("SIGTERM");
+  }
+})().then(() =>
+  app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
+);
+
+process.on("SIGINT", async function () {
+  await dbDisconnect();
+  console.log("Process terminated");
+  process.exit();
+});
+
+process.on("SIGTERM", async function () {
+  console.log("Process terminated due to an error");
+  process.exit(1);
 });
 
 process.on("uncaughtException", (error) => {
