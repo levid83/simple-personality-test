@@ -7,6 +7,8 @@ const app = createServer();
 
 const PORT = process.env.PORT || 3001;
 
+let mongod;
+
 (async function bootstrap() {
   mongoose.connection.on("connected", function () {
     console.log("Mongoose connected");
@@ -22,24 +24,29 @@ const PORT = process.env.PORT || 3001;
     process.emit("SIGTERM");
   });
 
-  try {
-    await dbConnect();
-  } catch (error) {
-    console.log("Cannot connect to Mongoose");
+  mongod = await dbConnect();
+})()
+  .then(() =>
+    app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
+  )
+  .catch((err) => {
+    console.log("Cannot connect to Database" + err.message);
     process.emit("SIGTERM");
-  }
-})().then(() =>
-  app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
-);
+  });
 
 process.on("SIGINT", async function () {
-  await dbDisconnect();
+  try {
+    await dbDisconnect(mongod);
+  } catch (err) {
+    console.log("Cannot disconnect from Database");
+  }
+
   console.log("Process terminated");
   process.exit();
 });
 
 process.on("SIGTERM", async function () {
-  console.log("Process terminated due to an error");
+  console.log("Process terminated");
   process.exit(1);
 });
 
