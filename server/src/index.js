@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const { createServer } = require("./server");
 
-const { dbConnect, dbDisconnect } = require("./database");
+require("dotenv").config();
+
+const { dbConnect, dbDisconnect } = require("./database/database");
 
 const app = createServer();
 
@@ -30,7 +32,7 @@ let mongod;
     app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
   )
   .catch((err) => {
-    console.log("Cannot connect to Database" + err.message);
+    console.log("Cannot connect to Database: " + err.message);
     process.emit("SIGTERM");
   });
 
