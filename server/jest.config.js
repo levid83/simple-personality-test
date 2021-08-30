@@ -1,6 +1,7 @@
 module.exports = {
   testEnvironment: "node",
   testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)"],
+  setupFilesAfterEnv: ["./src/test/setup.js"],
   collectCoverageFrom: ["src/**/*.{ts,js}", "!src/**index.js**"],
   coverageThreshold: {
     global: {
