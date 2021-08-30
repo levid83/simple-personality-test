@@ -1,9 +1,6 @@
-const {
-  getPersonalityTest,
-  sendAnswers,
-} = require("../controllers/PersonalityTestController");
+const { getQuiz, sendAnswers } = require("../controllers/QuizController");
 
 module.exports = (app) => {
-  app.get("/personality-test/:id", getPersonalityTest);
+  app.get("/quiz/:slug", getQuiz);
   app.post("/answers", sendAnswers);
 };
