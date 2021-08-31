@@ -1,13 +1,19 @@
-const Quiz = require("../models/quiz");
+const { validationResult } = require("express-validator");
+
+const { getQuizBySlug } = require("../services/QuizService");
 
 async function getQuiz(req, res) {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(404).json({ error: errors.array()[0].msg });
+  }
+
   try {
-    const quiz = await Quiz.findOne({ slug: req.params.slug })
-      .select("-questions.answers.points")
-      .select("-scores");
-    res.status(200).json({ data: quiz });
+    const quiz = await getQuizBySlug(req.params.slug);
+    return res.status(200).json({ data: quiz });
   } catch (err) {
-    res.status(401).json({ error: "quiz not found" });
+    return res.status(404).json({ error: "quiz not found" });
   }
 }
 
