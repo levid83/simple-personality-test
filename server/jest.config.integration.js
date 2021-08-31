@@ -2,7 +2,12 @@ module.exports = {
   testEnvironment: "node",
   testMatch: ["**/?(*.)+(int).(spec|test).[jt]s?(x)"],
   setupFilesAfterEnv: ["./src/test/setup.js"],
-  collectCoverageFrom: ["src/**/*.{ts,js}", "!src/**index.js**"],
+  collectCoverageFrom: [
+    "src/**/*.{ts,js}",
+    "!src/**index.js**",
+    "!src/**server.js**",
+    "!src/database/**",
+  ],
   coverageThreshold: {
     global: {
       branches: 80,
