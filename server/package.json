@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest -c jest.config.js",
+    "test": "jest -c jest.config.js --watchAll",
     "test:unit": "jest -c jest.config.unit.js",
     "test:int": "jest -c jest.config.integration.js"
   },
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-validator": "^6.12.1",
     "helmet": "^4.6.0",
     "mongodb-memory-server": "^7.3.6",
     "mongoose": "^6.0.2"
