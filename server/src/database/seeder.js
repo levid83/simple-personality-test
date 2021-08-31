@@ -87,7 +87,7 @@ module.exports = async function seed() {
     ],
     scores: [
       {
-        type: "introvert",
+        level: "introvert",
         text: `Your results indicate that you are more of an introvert.<br><br>
 
         What exactly does this mean?<br><br>
@@ -105,7 +105,7 @@ module.exports = async function seed() {
         maxPoints: 35,
       },
       {
-        type: "ambivert",
+        level: "ambivert",
         text: `Most people lie somewhere in between the two polar ends of each personality dimension. 
           Your results indicate that you have both extrovert and introvert qualities. 
           What exactly does this mean?<br><br>
@@ -124,7 +124,7 @@ module.exports = async function seed() {
         maxPoints: 66,
       },
       {
-        type: "extrovert",
+        level: "extrovert",
         text: `Your results indicate that you are more of an extrovert. What exactly does this mean?<br><br>
 
           Extroverts tend to be quite outgoing and talkative. They enjoy spending time with other people, 
