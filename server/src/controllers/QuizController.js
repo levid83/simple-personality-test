@@ -1,9 +1,14 @@
-function getQuiz(req, res) {
-  res.status(200).json({ result: "questions" });
+const Quiz = require("../models/quiz");
+
+async function getQuiz(req, res) {
+  try {
+    const quiz = await Quiz.findOne({ slug: req.params.slug })
+      .select("-questions.answers.points")
+      .select("-scores");
+    res.status(200).json({ data: quiz });
+  } catch (err) {
+    res.status(401).json({ error: "quiz not found" });
+  }
 }
 
-function sendAnswers(req, res) {
-  res.status(201).json({ result: "success" });
-}
-
-module.exports = { getQuiz, sendAnswers };
+module.exports = { getQuiz };
