@@ -9,6 +9,14 @@ describe("Quiz test", () => {
     expect(result).toMatchObject(testQuiz);
   });
 
+  it("can read quiz from database", async () => {
+    const quiz = new Quiz(testQuiz);
+    const result = await quiz.save();
+
+    const quiz2 = await Quiz.findOne(result._id);
+    expect(quiz2.id).toStrictEqual(result.id);
+  });
+
   it("should have valid slug", async () => {
     expect.assertions(1);
     const quiz = new Quiz({ ...testQuiz, slug: "$$$person$$$test" });
