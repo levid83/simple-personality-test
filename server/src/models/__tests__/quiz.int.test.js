@@ -1,40 +1,6 @@
-const { Schema, model } = require("mongoose");
 const Quiz = require("../../models/quiz");
 
-const testQuiz = {
-  title: "Personality Test",
-  slug: "personality-test",
-  questions: [
-    {
-      title: "1. Question?",
-      answers: [
-        { text: "answer 1.1", points: 10 },
-        { text: "answer 1.2", points: 20 },
-        { text: "answer 1.3", points: 5 },
-      ],
-    },
-  ],
-  scores: [
-    {
-      type: "introvert",
-      text: "text for introvert",
-      minPoints: 0,
-      maxPoints: 40,
-    },
-    {
-      type: "ambivert",
-      text: "text for ambivert",
-      minPoints: 41,
-      maxPoints: 60,
-    },
-    {
-      type: "extrovert",
-      text: "text for extrovet",
-      minPoints: 61,
-      maxPoints: 100,
-    },
-  ],
-};
+const { testQuiz } = require("../../test/testData");
 
 describe("Quiz test", () => {
   it("can save quiz into database", async () => {
@@ -45,7 +11,7 @@ describe("Quiz test", () => {
 
   it("should have valid slug", async () => {
     expect.assertions(1);
-    const quiz = new Quiz({ ...testQuiz, slug: "person@;test" });
+    const quiz = new Quiz({ ...testQuiz, slug: "$$$person$$$test" });
     try {
       const result = await quiz.save();
     } catch (err) {
@@ -72,13 +38,14 @@ describe("Quiz test", () => {
       expect(err.message).toMatch("answers");
     }
   });
-});
-it("should have scores", async () => {
-  expect.assertions(1);
-  const quiz = new Quiz({ ...testQuiz, scores: null });
-  try {
-    const result = await quiz.save();
-  } catch (err) {
-    expect(err.message).toMatch("scores");
-  }
+
+  it("should have scores", async () => {
+    expect.assertions(1);
+    const quiz = new Quiz({ ...testQuiz, scores: null });
+    try {
+      const result = await quiz.save();
+    } catch (err) {
+      expect(err.message).toMatch("scores");
+    }
+  });
 });
