@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { createServer } = require("./server");
 
+const seeder = require("./database/seeder");
+
 require("dotenv").config();
 
 const { dbConnect, dbDisconnect } = require("./database/database");
@@ -27,6 +29,8 @@ let mongod;
   });
 
   mongod = await dbConnect();
+
+  seeder();
 })()
   .then(() =>
     app.listen(PORT, () => console.log(`Server listening on ${PORT}`))
