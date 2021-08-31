@@ -13,11 +13,33 @@ describe("API routes test", () => {
     expect(response.statusCode).toBe(204);
   });
 
-  it("shouldn't accept wrong url parameter", async () => {
-    const response1 = await request.get("/quiz/$$$WRWER#$#$$");
-    expect(response1.statusCode).toBe(404);
+  it("shouldn't accept wrong Content-Type in header", async () => {
+    const response2 = await request.post("/quiz-result/1234");
+    expect(response2.statusCode).toBe(400);
+  });
 
-    const response2 = await request.post("/quiz-result/!2#$$@!");
-    expect(response2.statusCode).toBe(404);
+  it("shouldn't accept wrong url parameter", async () => {
+    const response1 = await request
+      .get("/quiz/$$$WRWER#$#$$")
+      .expect("Content-Type", /json/);
+
+    expect(response1.statusCode).toBe(400);
+
+    const response2 = await request
+      .post("/quiz-result/!2#$$@!")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/);
+
+    expect(response2.statusCode).toBe(400);
+  });
+
+  it("shouldn't accept wrong post parameters", async () => {
+    const response2 = await request
+      .post("/quiz-result/12d3hn1")
+      .set("Accept", "application/json")
+      .send("incorrect answers format")
+      .expect("Content-Type", /json/);
+
+    expect(response2.statusCode).toBe(400);
   });
 });
