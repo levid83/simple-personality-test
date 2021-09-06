@@ -1,0 +1,298 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: normal 16px sans-serif;
+  color: #555;
+  scroll-behavior: smooth;
+}
+
+ul,
+nav {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  opacity: 0.9;
+}
+
+a:hover {
+  opacity: 1;
+}
+
+a.btn {
+  color: #fff;
+  border-radius: 4px;
+  text-transform: uppercase;
+  background-color: #2196f3;
+  font-weight: 800;
+  text-align: center;
+}
+
+hr {
+  width: 150px;
+  height: 2px;
+  background-color: #2196f3;
+  border: 0;
+  margin-bottom: 80px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 125px 100px;
+}
+
+@media (max-width: 1000px) {
+  section {
+    padding: 100px 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 80px 30px;
+  }
+}
+
+section h3.title {
+  color: #414a4f;
+  text-transform: capitalize;
+  font: bold 32px "Open Sans", sans-serif;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+section p {
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 35px;
+  padding: 0 20px;
+  line-height: 2;
+}
+
+/* header */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding: 35px 100px 0;
+}
+
+.header h2 {
+  font-family: "Quicksand", sans-serif;
+}
+
+.header nav {
+  display: flex;
+}
+
+.header nav li {
+  margin: 0 15px;
+}
+
+.header nav li:first-child {
+  margin-left: 0;
+}
+
+.header nav li:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 1000px) {
+  .header {
+    padding: 20px 50px;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header h2 {
+    margin-bottom: 15px;
+  }
+}
+
+/* home */
+
+.intro {
+  position: relative;
+  justify-content: center;
+  min-height: 100vh;
+  color: #fff;
+  text-align: center;
+}
+
+.intro .background-image {
+  background-image: url("/img/personality-test.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-color: #2196f3;
+  z-index: -1;
+}
+
+.intro .background-image:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #414a4f;
+  opacity: 0.75;
+}
+
+.intro h1 {
+  font: bold 48px "Open Sans", sans-serif;
+  margin-bottom: 40px;
+}
+
+.intro a.btn {
+  padding: 20px 46px;
+}
+
+@media (max-width: 800px) {
+  .intro {
+    min-height: 600px;
+  }
+
+  .intro h1 {
+    font-size: 32px;
+  }
+
+  .intro a.btn {
+    padding: 15px 40px;
+  }
+}
+
+@media (max-width: 800px) {
+  .intro {
+    min-height: 600px;
+  }
+
+  .intro h1 {
+    font-size: 32px;
+  }
+
+  .intro a.btn {
+    padding: 12px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro {
+    min-height: 500px;
+  }
+
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .intro a.btn {
+    padding: 10px 28px;
+  }
+}
+
+/* quiz */
+
+.quiz {
+  background-color: #f7f7f7;
+}
+
+.quiz form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  max-width: 800px;
+  width: 80%;
+}
+
+.quiz form input {
+  padding: 15px;
+  flex: 1;
+  margin-right: 30px;
+  font-size: 18px;
+  color: #555;
+}
+
+.quiz form .btn {
+  padding: 18px 42px;
+}
+
+@media (max-width: 800px) {
+  .quiz form input {
+    flex-basis: 100%;
+    margin: 0 0 20px 0;
+  }
+}
+
+/* footer */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  background-color: #414a4f;
+  padding: 60px 0;
+}
+
+footer ul {
+  display: flex;
+  margin-bottom: 25px;
+  font-size: 32px;
+}
+
+footer ul li {
+  margin: 0 8px;
+}
+
+footer ul li:first-child {
+  margin-left: 0;
+}
+
+footer ul li:last-child {
+  margin-right: 0;
+}
+
+footer p {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+
+footer p a {
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  footer {
+    padding: 80px 15px;
+  }
+}
