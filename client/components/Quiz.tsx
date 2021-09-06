@@ -24,7 +24,7 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
       answer,
     ]);
   };
-  const onNext = (): void => {
+  const onClickNext = (): void => {
     setCounter((c) => c + 1);
   };
 
@@ -45,7 +45,7 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
         onAnswer={onAnswer}
       ></Question>
       <button
-        onClick={() => onNext()}
+        onClick={() => onClickNext()}
         disabled={answers[counter] === undefined}
       >
         Next
