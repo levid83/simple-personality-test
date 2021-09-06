@@ -13,9 +13,12 @@ export type QuizResultType = {
 
 const QuizResult = ({ result }: { result?: QuizResultType }): ReactElement => {
   return (
-    <div>
-      <div>Your personality type is: {result?.score.level}</div>
-      <div>{Parser().parse(result?.score.text)}</div>
+    <div className="quiz-result">
+      <div className="personality-type">
+        Your personality type is:{" "}
+        <span>{result?.score.level.toUpperCase()}</span>
+      </div>
+      <div className="explanation">{Parser().parse(result?.score.text)}</div>
     </div>
   );
 };

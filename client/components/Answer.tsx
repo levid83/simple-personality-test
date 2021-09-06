@@ -10,6 +10,12 @@ const Answer = ({
   answer: AnswerType;
   onAnswer: (id: string) => void;
 }) => {
-  return <li onClick={() => onAnswer(answer._id)}>{answer.text}</li>;
+  return (
+    <div className="answer" onClick={() => onAnswer(answer._id)}>
+      <input type="radio" name="answer" id={"answer" + answer._id} />
+      <label htmlFor={"answer" + answer._id}>{answer.text}</label>
+      <span className="checkmark"></span>
+    </div>
+  );
 };
 export default Answer;

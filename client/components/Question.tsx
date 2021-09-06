@@ -12,13 +12,13 @@ const Question = (props: {
   const { question, onAnswer } = props;
 
   return (
-    <div>
-      <span>{question.title}</span>
-      <ul>
+    <div className="question">
+      <span className="title">{question.title}</span>
+      <div className="answers">
         {question.answers.map((a: AnswerType, idx: number) => (
           <Answer key={a._id} answer={a} onAnswer={onAnswer} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

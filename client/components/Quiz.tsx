@@ -41,10 +41,10 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
   }, [answers, counter, quiz.questions.length, quiz._id]);
 
   return counter < quiz.questions.length ? (
-    <>
+    <div className="container">
       <h3 className="title">{quiz.title}</h3>
       <ProgressBar
-        bgcolor="#2196f3"
+        bgcolor="orange"
         completed={(counter * 100) / quiz.questions.length}
       ></ProgressBar>
       <Question
@@ -52,12 +52,13 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
         onAnswer={onAnswer}
       ></Question>
       <button
+        className="btn"
         onClick={() => onClickNext()}
         disabled={answers[counter] === undefined}
       >
-        Next
+        {counter === quiz.questions.length - 1 ? "Finish" : "Next"}
       </button>
-    </>
+    </div>
   ) : quizResult ? (
     <QuizResult result={quizResult} />
   ) : error ? (
