@@ -3,8 +3,10 @@ import Question from "./Question";
 import { postAnswers } from "../services/Quiz.service";
 import QuizResult, { QuizResultType } from "./QuizResult";
 import Error from "next/error";
+import ProgressBar from "./ProgressBar";
 
 export type QuizType = {
+  title: String;
   questions: [];
   _id: string;
 };
@@ -40,6 +42,11 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
 
   return counter < quiz.questions.length ? (
     <>
+      <h3 className="title">{quiz.title}</h3>
+      <ProgressBar
+        bgcolor="#2196f3"
+        completed={(counter * 100) / quiz.questions.length}
+      ></ProgressBar>
       <Question
         question={quiz.questions[counter]}
         onAnswer={onAnswer}

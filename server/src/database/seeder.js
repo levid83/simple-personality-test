@@ -2,7 +2,7 @@ const Quiz = require("../models/quiz");
 
 module.exports = async function seed() {
   const quiz = new Quiz({
-    title: "Are you an extrovert, introvert or ambivert?",
+    title: "Personality test",
     slug: "personality-test",
     description: `You probably have a hunch about which one you are, but why not take this quiz and double-check? Knowing your traits will help you
      figure out how you can best fit and function in the workplace and the world.`,

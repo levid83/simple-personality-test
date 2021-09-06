@@ -26,7 +26,6 @@ const Home: NextPage = ({ errorCode, quiz }: any) => {
       </section>
 
       <section className="quiz" id="start-quiz">
-        <h3 className="title">Personality test</h3>
         {errorCode ? (
           <Error statusCode={errorCode} />
         ) : (
