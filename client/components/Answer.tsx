@@ -11,10 +11,24 @@ const Answer = ({
   onAnswer: (id: string) => void;
 }) => {
   return (
-    <div className="answer" onClick={() => onAnswer(answer._id)}>
-      <input type="radio" name="answer" id={"answer" + answer._id} />
-      <label htmlFor={"answer" + answer._id}>{answer.text}</label>
-      <span className="checkmark"></span>
+    <div className="answer">
+      <input
+        type="radio"
+        name="answer"
+        id={"answer" + answer._id}
+        hidden
+      ></input>
+      <label
+        htmlFor={"answer" + answer._id}
+        onClick={() => onAnswer(answer._id)}
+      >
+        {answer.text}
+      </label>
+      <label
+        className="checkmark"
+        htmlFor={"answer" + answer._id}
+        onClick={() => onAnswer(answer._id)}
+      ></label>
     </div>
   );
 };
