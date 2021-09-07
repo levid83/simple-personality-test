@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import Question from "./Question";
+import Question, { QuestionType } from "./Question";
 import { postAnswers } from "../services/Quiz.service";
 import QuizResult, { QuizResultType } from "./QuizResult";
 import Error from "next/error";
@@ -7,8 +7,8 @@ import ProgressBar from "./ProgressBar";
 import Spinner from "./Spinner";
 
 export type QuizType = {
-  title: String;
-  questions: [];
+  title: string;
+  questions: QuestionType[];
   _id: string;
 };
 

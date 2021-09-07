@@ -1,6 +1,6 @@
 export type AnswerType = {
   _id: string;
-  text: Text;
+  text: string;
 };
 
 const Answer = ({
@@ -25,6 +25,7 @@ const Answer = ({
         {answer.text}
       </label>
       <label
+        data-testid={"answer" + answer._id}
         className="checkmark"
         htmlFor={"answer" + answer._id}
         onClick={() => onAnswer(answer._id)}

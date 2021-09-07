@@ -1,8 +1,8 @@
 import Answer, { AnswerType } from "./Answer";
 
-type QuestionType = {
+export type QuestionType = {
   title: string;
-  answers: [];
+  answers: AnswerType[];
 };
 
 const Question = (props: {
