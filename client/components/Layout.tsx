@@ -7,11 +7,11 @@ export default function Layout({ children, pageMeta }: any) {
   return (
     <>
       <CustomHead
-        title={pageMeta.title}
-        description={pageMeta.description}
-        url={pageMeta.url}
-        image={pageMeta.image}
-        creator={pageMeta.creator}
+        title={pageMeta?.title}
+        description={pageMeta?.description}
+        url={pageMeta?.url}
+        image={pageMeta?.image}
+        creator={pageMeta?.creator}
       />
       <Header />
       {children}

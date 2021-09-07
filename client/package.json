@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test": "jest --watch --silent",
+    "test:ci": "jest --ci --silent"
   },
   "dependencies": {
     "axios": "^0.21.1",
