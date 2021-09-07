@@ -4,6 +4,7 @@ import { postAnswers } from "../services/Quiz.service";
 import QuizResult, { QuizResultType } from "./QuizResult";
 import Error from "next/error";
 import ProgressBar from "./ProgressBar";
+import Spinner from "./Spinner";
 
 export type QuizType = {
   title: String;
@@ -64,7 +65,7 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
   ) : error ? (
     <Error statusCode={error.code} />
   ) : (
-    <div>...Loading</div>
+    <Spinner />
   );
 };
 
