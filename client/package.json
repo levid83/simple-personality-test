@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch --silent",
-    "test:ci": "jest --ci --silent"
+    "test:ci": "jest --ci --silent",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -25,6 +26,7 @@
     "@types/react": "17.0.19",
     "@types/react-scroll": "^1.8.3",
     "babel-jest": "27.0.6",
+    "cypress": "^8.3.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-plugin-testing-library": "4.11.0",
