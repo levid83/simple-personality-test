@@ -4,9 +4,10 @@ import { QuizResultType } from "../components/QuizResult";
 
 const getQuiz = async (slug: string): Promise<QuizType> => {
   try {
-    const response = await request.get("/quiz/" + slug);
+    const response: any = await request.get("/quiz/" + slug);
 
-    if (!response.data) return Promise.reject(response.status);
+    if (response.data.error)
+      return Promise.reject(httpErrorHander({ response }));
 
     return response.data.data;
   } catch (err) {
@@ -19,11 +20,12 @@ const postAnswers = async (
   answers: String[]
 ): Promise<QuizResultType> => {
   try {
-    const response = await request.post("/quiz-result/" + questionId, {
+    const response: any = await request.post("/quiz-result/" + questionId, {
       answers,
     });
 
-    if (!response.data) return Promise.reject(response.status);
+    if (response.data.error)
+      return Promise.reject(httpErrorHander({ response }));
 
     return response.data.data;
   } catch (err) {
@@ -31,4 +33,6 @@ const postAnswers = async (
   }
 };
 
-export { getQuiz, postAnswers };
+const QuizService = { getQuiz, postAnswers };
+
+export default QuizService;

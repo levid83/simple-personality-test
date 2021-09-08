@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from "react";
 import Question, { QuestionType } from "./Question";
-import { postAnswers } from "../services/Quiz.service";
+import QuizService from "../services/Quiz.service";
 import QuizResult, { QuizResultType } from "./QuizResult";
 import Error from "next/error";
 import ProgressBar from "./ProgressBar";
@@ -33,7 +33,7 @@ const Quiz = ({ quiz }: { quiz: QuizType }): ReactElement => {
 
   useEffect(() => {
     if (counter === quiz.questions.length) {
-      postAnswers(quiz._id, answers)
+      QuizService.postAnswers(quiz._id, answers)
         .then((data) => {
           setQuizResult(data);
         })
