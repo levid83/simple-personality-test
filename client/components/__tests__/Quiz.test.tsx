@@ -1,4 +1,5 @@
 import { render, fireEvent, screen } from "@testing-library/react";
+import QuizService from "../../services/Quiz.service";
 import Quiz, { QuizType } from "../Quiz";
 
 let quiz: QuizType;
@@ -32,6 +33,10 @@ beforeEach(() => {
   };
 });
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Test Quiz", () => {
   it("renders Quiz component", () => {
     render(<Quiz quiz={quiz} />);
@@ -60,6 +65,16 @@ describe("Test Quiz", () => {
     expect(await screen.findByText("question 2 title")).toBeInTheDocument();
   });
 
+  it("can change the answer before showing the next question", async () => {
+    render(<Quiz quiz={quiz} />);
+
+    fireEvent.click(screen.getByText("answer 1"));
+    fireEvent.click(screen.getByText("answer 2"));
+    fireEvent.click(screen.getByText("Next"));
+
+    expect(await screen.findByText("question 2 title")).toBeInTheDocument();
+  });
+
   it("renders Finish button for the last question", async () => {
     render(<Quiz quiz={quiz} />);
 
@@ -70,5 +85,48 @@ describe("Test Quiz", () => {
     fireEvent.click(screen.getByText("Next"));
 
     expect(await screen.findByText("Finish")).toBeInTheDocument();
+  });
+
+  it("renders quiz results when submit the answers", async () => {
+    QuizService.postAnswers = jest.fn().mockResolvedValue({
+      score: {
+        level: "introvert",
+        text: "result text",
+      },
+    });
+
+    render(<Quiz quiz={quiz} />);
+
+    fireEvent.click(screen.getByText("answer 1"));
+    fireEvent.click(screen.getByText("Next"));
+
+    fireEvent.click(screen.getByText("answer 3"));
+    fireEvent.click(screen.getByText("Next"));
+
+    fireEvent.click(screen.getByText("answer 5"));
+    fireEvent.click(screen.getByText("Finish"));
+
+    expect(
+      await screen.findByText(/Your personality type/)
+    ).toBeInTheDocument();
+  });
+
+  it("renders error page when receives error from the server", async () => {
+    QuizService.postAnswers = jest.fn().mockRejectedValue({
+      code: 500,
+    });
+
+    render(<Quiz quiz={quiz} />);
+
+    fireEvent.click(screen.getByText("answer 1"));
+    fireEvent.click(screen.getByText("Next"));
+
+    fireEvent.click(screen.getByText("answer 3"));
+    fireEvent.click(screen.getByText("Next"));
+
+    fireEvent.click(screen.getByText("answer 5"));
+    fireEvent.click(screen.getByText("Finish"));
+
+    expect(await screen.findByText(/500/)).toBeInTheDocument();
   });
 });

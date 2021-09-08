@@ -1,6 +1,10 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import Question from "../Question";
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Test Question", () => {
   it("renders Question component", () => {
     const question = {
@@ -31,6 +35,7 @@ describe("Test Question", () => {
     render(<Question question={question} onAnswer={mockCallBack} />);
 
     fireEvent.click(screen.getByText("answer 1"));
-    expect(mockCallBack).toHaveBeenCalled();
+    fireEvent.click(screen.getByText("answer 2"));
+    expect(mockCallBack).toHaveBeenCalledTimes(2);
   });
 });

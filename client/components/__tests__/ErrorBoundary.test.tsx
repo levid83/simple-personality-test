@@ -7,6 +7,10 @@ function ProblemChild() {
   return <div>Error</div>; // eslint-disable-line
 }
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Test ErrorBoundary", () => {
   it("renders ErrorBoundary's children", () => {
     render(

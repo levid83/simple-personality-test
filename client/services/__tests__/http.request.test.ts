@@ -1,5 +1,15 @@
 import request, { httpErrorHander } from "../http.request";
 
+let errLogger: any;
+beforeEach(async () => {
+  errLogger = console.error;
+});
+
+afterEach(async () => {
+  console.error = errLogger;
+  jest.clearAllMocks();
+});
+
 describe("Test Http Request", () => {
   it("has the correct settings", () => {
     expect(request.defaults.baseURL).toBe(process.env.NEXT_PUBLIC_SERVER_URL);

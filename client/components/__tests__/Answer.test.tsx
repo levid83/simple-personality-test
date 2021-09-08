@@ -1,6 +1,10 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import Answer from "../Answer";
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Test Answer", () => {
   it("renders Answer component", () => {
     render(
