@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:cypress": "tsc --project cypress/tsconfig.json",
     "test": "jest --watch --silent",
-    "test:ci": "jest --ci --silent",
+    "test:ci": "jest --ci",
     "cypress": "cypress open"
   },
   "dependencies": {
@@ -33,7 +33,7 @@
     "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-testing-library": "4.11.0",
     "identity-obj-proxy": "3.0.0",
-    "jest": "27.0.6",
+    "jest": "^27.1.0",
     "react-test-renderer": "17.0.2",
     "ts-jest": "^27.0.5",
     "typescript": "4.4.2"

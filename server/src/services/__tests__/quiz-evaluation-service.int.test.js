@@ -29,6 +29,7 @@ describe("Quize Evaluation Service test", () => {
 
     const quiz = new Quiz(testQuiz);
     quiz.scores[2].maxPoints = 0;
+
     await quiz.save();
 
     const answers = quiz.questions.reduce(
