@@ -2,7 +2,7 @@ const Quiz = require("../models/quiz");
 
 module.exports = async function seed() {
   const quiz = new Quiz({
-    title: "Personality test",
+    title: "Introvert vs Extrovert",
     slug: "personality-test",
     description: `You probably have a hunch about which one you are, but why not take this quiz and double-check? Knowing your traits will help you
      figure out how you can best fit and function in the workplace and the world.`,
@@ -88,51 +88,51 @@ module.exports = async function seed() {
     scores: [
       {
         level: "introvert",
-        text: `Your results indicate that you are more of an introvert.<br><br>
+        text: `<p>Your results indicate that you are more of an introvert.</p>
 
-        What exactly does this mean?<br><br>
+        <p>What exactly does this mean?</p>
         
-        Introverts tend to enjoy solitude and spending quiet time alone. 
-        They expend energy in social situations and prefer not to be the center of attention.<br><br>
+        <p>Introverts tend to enjoy solitude and spending quiet time alone. 
+        They expend energy in social situations and prefer not to be the center of attention.</p>
 
-        In general, people might describe you as quiet. You probably prefer to spend time alone 
+        <p>In general, people might describe you as quiet. You probably prefer to spend time alone 
         or with a small group of close friends and family. You may dislike busy social events 
-        such as parties and often feel drained after spending a lot of time around people you do not know well.<br><br>
+        such as parties and often feel drained after spending a lot of time around people you do not know well.</p>
 
-        In addition to understanding the main characteristics of introverts, it can be helpful 
-        to understand more about dating an introvert and how to distinguish between introversion and shyness.`,
+        <p>In addition to understanding the main characteristics of introverts, it can be helpful 
+        to understand more about dating an introvert and how to distinguish between introversion and shyness.</p>`,
         minPoints: 0,
         maxPoints: 35,
       },
       {
         level: "ambivert",
-        text: `Most people lie somewhere in between the two polar ends of each personality dimension. 
+        text: `<p>Most people lie somewhere in between the two polar ends of each personality dimension. 
           Your results indicate that you have both extrovert and introvert qualities. 
-          What exactly does this mean?<br><br>
+          What exactly does this mean?</p>
 
-          Extroverts tend to be quite outgoing and talkative. They enjoy spending time with other people, 
-          and feel energized in social situations. Oftentimes, extroverts like being the focus of attention.<br><br>
+          <p>Extroverts tend to be quite outgoing and talkative. They enjoy spending time with other people, 
+          and feel energized in social situations. Oftentimes, extroverts like being the focus of attention.</p>
           
-          Introverts tend to enjoy solitude and spending quiet time alone. They expend energy in social situations, 
-          and prefer not to be the center of attention.<br><br>
+          <p>Introverts tend to enjoy solitude and spending quiet time alone. They expend energy in social situations, 
+          and prefer not to be the center of attention.</p>
 
-          Since your results indicate that you are somewhere in the middle of the extrovert/introvert continuum, 
+          <p>Since your results indicate that you are somewhere in the middle of the extrovert/introvert continuum, 
           you tend to have qualities that fit into both ends of the spectrum. You like spending time with others, 
           but you also enjoy having time to yourself. You might not mind being the center of attention once in a while, 
-          but you probably prefer to stay out of the spotlight on a day-to-day basis.`,
+          but you probably prefer to stay out of the spotlight on a day-to-day basis.</p>`,
         minPoints: 36,
         maxPoints: 66,
       },
       {
         level: "extrovert",
-        text: `Your results indicate that you are more of an extrovert. What exactly does this mean?<br><br>
+        text: `<p>Your results indicate that you are more of an extrovert. What exactly does this mean?</p>
 
-          Extroverts tend to be quite outgoing and talkative. They enjoy spending time with other people, 
-          and feel energized in social situations. Oftentimes, extroverts like being the focus of attention.<br><br>
+          <p>Extroverts tend to be quite outgoing and talkative. They enjoy spending time with other people, 
+          and feel energized in social situations. Oftentimes, extroverts like being the focus of attention.</p>
 
-          As an extrovert, people probably describe you as friendly and outgoing. 
+          <p>As an extrovert, people probably describe you as friendly and outgoing. 
           You love meeting new people and have no problem making new friends. 
-          Spending time with others leaves you feeling energized and inspired.`,
+          Spending time with others leaves you feeling energized and inspired.</p>`,
         minPoints: 67,
         maxPoints: 100,
       },

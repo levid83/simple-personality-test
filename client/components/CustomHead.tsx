@@ -47,10 +47,6 @@ export default function CustomHead({
         href="https://fonts.googleapis.com/css?family=Quicksand"
         rel="stylesheet"
       />
-      <link
-        rel="stylesheet"
-        href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
-      />
     </Head>
   );
 }

@@ -14,7 +14,7 @@ export default function Layout({ children, pageMeta }: any) {
         creator={pageMeta?.creator}
       />
       <Header />
-      {children}
+      <main>{children}</main>
       <Footer />
     </>
   );
