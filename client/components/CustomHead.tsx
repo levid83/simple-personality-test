@@ -40,11 +40,11 @@ export default function CustomHead({
       <meta name="twitter:image" content={image} />
 
       <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"
         rel="stylesheet"
       />
       <link
-        href="https://fonts.googleapis.com/css?family=Quicksand"
+        href="https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap"
         rel="stylesheet"
       />
     </Head>

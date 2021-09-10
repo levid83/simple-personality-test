@@ -1,9 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
+import personality from "../public/img/personality.png";
+
 export default function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <img src="/img/personality.png" alt="Personality" height="50" />
+        <Image src={personality} alt="Personality" width="50" height="46" />
         <h2>
           <a href="#">Personality test</a>
         </h2>

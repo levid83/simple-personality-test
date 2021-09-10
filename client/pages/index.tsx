@@ -57,9 +57,14 @@ const Home: NextPage = ({ errorCode, quiz }: any) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ res }: any) {
   try {
     const data = await QuizService.getQuiz("personality-test");
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=60"
+    );
+
     return {
       props: { erroCode: null, quiz: data },
     };
